@@ -1,6 +1,8 @@
 docker 실습
 
 docker images
+#마리아DB 컨테이너에 들어가기
+docker run -it mariadb:10.5 bash
 
 # Dockerfile - 확장자X
 FROM alpine
@@ -11,10 +13,18 @@ docker build -t hello-docker .
 docker run hello-docker
 
 
+컨테이너를 실행할 때 명령어를 바꿔서 echo 할 수 있게 만들자!
 # Dockerfile
 FROM alpine
 ENTRYPOINT ["echo"]
 
-핵심: ENTRYPOINT는 고정 명령을 지정해주는 역할이에요
-여기선 echo가 기본 명령이 되고,
-docker run 뒤에 입력하는 값들이 **인자(argument)**로 들어가게 됩니다.
+# 핵심: ENTRYPOINT는 고정 명령을 지정해주는 역할이에요
+# 여기선 echo가 기본 명령이 되고,
+docker build -t echoer .
+# docker run 뒤에 입력하는 값들이 **인자(argument)**로 들어가게 됩니다.
+docker run echoer Hello, Docker from ENTRYPOINT!
+
+✅ 핵심 비교: CMD vs ENTRYPOINT
+항목	설명
+CMD [...]	기본 명령 + 인자 지정 (덮어쓸 수 있음)
+ENTRYPOINT [...]	명령 고정, 뒤에 오는 인자가 붙음
