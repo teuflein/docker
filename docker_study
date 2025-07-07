@@ -9,3 +9,12 @@ CMD ["echo", "Hello Docker!"]
 --빌드 & 실행
 docker build -t hello-docker .
 docker run hello-docker
+
+
+# Dockerfile
+FROM alpine
+ENTRYPOINT ["echo"]
+
+핵심: ENTRYPOINT는 고정 명령을 지정해주는 역할이에요
+여기선 echo가 기본 명령이 되고,
+docker run 뒤에 입력하는 값들이 **인자(argument)**로 들어가게 됩니다.
