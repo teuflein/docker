@@ -1,0 +1,11 @@
+docker 실습
+
+docker images
+
+# Dockerfile - 확장자X
+FROM alpine
+CMD ["echo", "Hello Docker!"]
+
+--빌드 & 실행
+docker build -t hello-docker .
+docker run hello-docker
